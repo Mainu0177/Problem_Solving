@@ -91,3 +91,25 @@
 //     }
 // }
 // echo getReminderByTwo($input) . PHP_EOL;
+
+
+// 5.
+echo "Enter Number: \n";
+$input = (int) trim(fgets(STDIN));
+function isRepdigit($number){
+    // convert number to string
+    $number = (string) $number;
+    
+    for($i = 0; $i < strlen($number); $i++){
+        if($number[$i] != $number[0]){
+            return false;
+        }
+    }
+    return true;
+}
+$result = isRepdigit($input);
+if($result){
+    echo "true";
+}else{
+    echo "false";
+}
