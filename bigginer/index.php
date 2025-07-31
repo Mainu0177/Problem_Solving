@@ -93,23 +93,85 @@
 // echo getReminderByTwo($input) . PHP_EOL;
 
 
-// 5.
-echo "Enter Number: \n";
-$input = (int) trim(fgets(STDIN));
-function isRepdigit($number){
-    // convert number to string
-    $number = (string) $number;
+// 5. Write a PHP function that takes a number as input and returns true if the number is a repeated digit.
+// echo "Enter Number: \n";
+// $input = trim(fgets(STDIN));
+// function isRepdigit($number){
+//     // convert number to string
+//     $number = (string) $number;
     
-    for($i = 0; $i < strlen($number); $i++){
-        if($number[$i] != $number[0]){
-            return false;
-        }
+//     for($i = 0; $i < strlen($number); $i++){
+//         if($number[$i] != $number[0]){
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+// $result = isRepdigit($input);
+// if($result){
+//     echo "true";
+// }else{
+//     echo "false";
+// }
+
+// 6.
+// echo "Enter Number: \n";
+// $input = (int) trim(fgets(STDIN));
+// function evenOrOdd($number){
+//     if($number % 2 == 0){
+//         return "even";
+//     }else{
+//         return "odd";
+//     }
+// }
+// $result = evenOrOdd($input);
+// if($result == "even"){
+//     echo "even";
+// }else{
+//     echo "odd";
+// }
+// $input = (int)trim(fgets(STDIN));
+//     function evenOrOdd($number){
+//         $number = str_replace("-", "", $number);
+//         $sum = 0;
+//         for ($i = 0; $i < strlen($number); $i++) {
+//             $sum += (int)$number[$i];
+//         }
+
+//         if ($sum % 2 == 0) {
+//             return "Even";
+//         } else {
+//             return "Odd";
+//         }
+//     }
+//     $result = evenOrOdd($input);
+//     echo $result . PHP_EOL;
+
+// 7. 
+echo "enter the number: \n";
+$input = trim(fgets(STDIN));
+function isConsecutive($arr){
+    $number = count($arr);
+    // array is empty
+    if($number == 0){
+        return false;
     }
-    return true;
+    // check for duplicates
+    $unique = array_unique($arr);
+    if(count($unique) != $number){
+        return false;
+    }
+    // check for consecutive
+    sort($arr);
+    $min = min($arr);
+    $max = max($arr);
+    if(($max - $min) + 1 == $number){
+        return true;
+    }else{
+        return false;
+    }
 }
-$result = isRepdigit($input);
-if($result){
-    echo "true";
-}else{
-    echo "false";
-}
+
+$result = isConsecutive($input);
+echo $result . PHP_EOL;
+
