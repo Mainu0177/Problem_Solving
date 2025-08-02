@@ -148,30 +148,90 @@
 //     echo $result . PHP_EOL;
 
 // 7. 
-echo "enter the number: \n";
-$input = trim(fgets(STDIN));
-function isConsecutive($arr){
+// echo "Enter a number: \n";
+// $input = (int) trim(fgets(STDIN));
+// function isConsecutive($arr){
+//     $number = count($arr);
+//     if($number == 0){
+//         return false;
+//     }
+
+//     $unique = array_unique($arr);
+//     if(count($unique) != $number){
+//         return false;
+//     }
+
+//     $min = min($arr);
+//     $max = max($arr);
+//     return ($max - $min + 1);
+// }
+
+// $line = trim(fgets(STDIN));
+// $arr = array_map('intval', explode(" ", $line));
+
+// $result = isConsecutive($arr);
+// echo $result ? "true\n" : "false\n";
+
+// function isConsecutive($arr) {
+//     $n = count($arr);
+//     if ($n == 0) return false;
+
+//     // 🔁 ডুপ্লিকেট চেক
+//     $unique = array_unique($arr);
+//     if (count($unique) != $n) return false;
+
+//     // ✅ min, max
+//     $min = min($arr);
+//     $max = max($arr);
+
+//     // 🧠 ধারাবাহিক কি না
+//     // 1 থেকে N পর্যন্ত সংখ্যা থাকলে max - min + 1 == n হবে
+//     if ($max - $min + 1 != $n) return false;
+
+//     // 🎯 check every element in the range exists
+//     $set = array_flip($arr);
+//     for ($i = $min; $i <= $max; $i++) {
+//         if (!isset($set[$i])) {
+//             return false;
+//         }
+//     }
+
+//     return true;
+// }
+
+// // ✅ ইনপুট নেওয়া
+// echo "Enter number of elements: ";
+// $handle = fopen("php://stdin", "r");
+// $n = (int)trim(fgets($handle));
+
+// echo "Enter $n numbers separated by space:\n";
+// $line = trim(fgets($handle));
+// $arr = array_map('intval', explode(" ", $line));
+
+// // ✅ রেজাল্ট
+// echo isConsecutive($arr) ? "true\n" : "false\n";
+
+    $input = (int) trim(fgets(STDIN));
+    function isConsecutive($arr){
     $number = count($arr);
-    // array is empty
-    if($number == 0){
-        return false;
-    }
-    // check for duplicates
+    if($number == 0) return false;
+
     $unique = array_unique($arr);
-    if(count($unique) != $number){
-        return false;
-    }
-    // check for consecutive
-    sort($arr);
+    if(count($unique) != $number) return false;
+
     $min = min($arr);
     $max = max($arr);
-    if(($max - $min) + 1 == $number){
-        return true;
-    }else{
-        return false;
+    if ($max - $min + 1 != $number) return false;
+
+    $set = array_flip($arr);
+    for($i = $min; $i <= $max; $i++){
+        if(!isset($set[$i])) return false;
     }
+    return true;
 }
 
-$result = isConsecutive($input);
-echo $result . PHP_EOL;
+$line = trim(fgets(STDIN));
+$arr = array_map('intval', explode(" ", $line));
 
+$result = isConsecutive($arr);
+echo $result ? "true\n" : "false\n";
